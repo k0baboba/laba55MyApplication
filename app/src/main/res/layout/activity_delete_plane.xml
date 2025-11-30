@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_menu_delete"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Delete Icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Plane?"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tv_plane_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plane ICAO24"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btn_confirm_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm Delete"
+        android:backgroundTint="#D32F2F"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_cancel_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_marginTop="8dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+</LinearLayout>

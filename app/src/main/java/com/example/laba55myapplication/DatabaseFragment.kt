@@ -34,10 +34,10 @@ class DatabaseFragment : Fragment() {
         val planeDao = db.planeDao()
 
         adapter = DatabaseAdapter(
-            // Короткое нажатие теперь ничего не делает (или можно показывать подсказку "Long press for actions")
-            onItemClick = { },
+            // Короткое нажатие: Открываем детали
+            onItemClick = { plane -> showDetails(plane) },
             
-            // Долгое нажатие - единственное действие для вызова меню
+            // Долгое нажатие: Открываем меню действий
             onItemLongClick = { plane -> showActionDialog(plane) }
         )
 
@@ -49,7 +49,8 @@ class DatabaseFragment : Fragment() {
         }
 
         binding.fabAddPlane.setOnClickListener {
-            val intent = Intent(requireContext(), AddEditPlaneActivity::class.java)
+            // Используем специализированное Activity для добавления
+            val intent = Intent(requireContext(), AddPlaneActivity::class.java)
             startActivity(intent)
         }
     }
@@ -61,9 +62,9 @@ class DatabaseFragment : Fragment() {
             .setTitle("Actions for ${plane.icao24}")
             .setItems(options) { _, which ->
                 when (which) {
-                    0 -> showDetails(plane) // Просмотр сразу открывает детали (это безопасно)
-                    1 -> confirmUpdate(plane) // Перед обновлением спрашиваем
-                    2 -> deletePlane(plane)   // Удаление уже имеет свое Activity с подтверждением
+                    0 -> showDetails(plane)
+                    1 -> updatePlane(plane) // Сразу переходим к обновлению, без лишних вопросов
+                    2 -> deletePlane(plane) // Сразу переходим к экрану удаления
                 }
             }
             .show()
@@ -74,38 +75,29 @@ class DatabaseFragment : Fragment() {
         val bundle = Bundle().apply {
             putParcelable("plane", stateVector)
         }
+        // Используем навигацию для показа фрагмента деталей
         findNavController().navigate(R.id.planeDetailFragment, bundle)
     }
 
-    private fun confirmUpdate(plane: PlaneEntity) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Update Plane")
-            .setMessage("Do you want to edit details for ${plane.icao24}?")
-            .setPositiveButton("Yes") { _, _ ->
-                updatePlane(plane)
-            }
-            .setNegativeButton("No", null)
-            .show()
-    }
-
     private fun updatePlane(plane: PlaneEntity) {
-        val intent = Intent(requireContext(), AddEditPlaneActivity::class.java).apply {
-            putExtra(AddEditPlaneActivity.EXTRA_ICAO, plane.icao24)
-            putExtra(AddEditPlaneActivity.EXTRA_CALLSIGN, plane.callsign)
-            putExtra(AddEditPlaneActivity.EXTRA_COUNTRY, plane.originCountry)
-            putExtra(AddEditPlaneActivity.EXTRA_VELOCITY, plane.velocity)
-            putExtra(AddEditPlaneActivity.EXTRA_ALTITUDE, plane.baroAltitude)
+        // Используем специализированное Activity для обновления
+        val intent = Intent(requireContext(), UpdatePlaneActivity::class.java).apply {
+            putExtra(UpdatePlaneActivity.EXTRA_ICAO, plane.icao24)
+            putExtra(UpdatePlaneActivity.EXTRA_CALLSIGN, plane.callsign)
+            putExtra(UpdatePlaneActivity.EXTRA_COUNTRY, plane.originCountry)
+            putExtra(UpdatePlaneActivity.EXTRA_VELOCITY, plane.velocity)
+            putExtra(UpdatePlaneActivity.EXTRA_ALTITUDE, plane.baroAltitude)
             
-            // Передаем новые поля
-            putExtra(AddEditPlaneActivity.EXTRA_LONGITUDE, plane.longitude)
-            putExtra(AddEditPlaneActivity.EXTRA_LATITUDE, plane.latitude)
-            putExtra(AddEditPlaneActivity.EXTRA_TRUE_TRACK, plane.trueTrack)
-            putExtra(AddEditPlaneActivity.EXTRA_ON_GROUND, plane.onGround)
+            putExtra(UpdatePlaneActivity.EXTRA_LONGITUDE, plane.longitude)
+            putExtra(UpdatePlaneActivity.EXTRA_LATITUDE, plane.latitude)
+            putExtra(UpdatePlaneActivity.EXTRA_TRUE_TRACK, plane.trueTrack)
+            putExtra(UpdatePlaneActivity.EXTRA_ON_GROUND, plane.onGround)
         }
         startActivity(intent)
     }
 
     private fun deletePlane(plane: PlaneEntity) {
+        // Используем специализированное Activity для удаления
         val intent = Intent(requireContext(), DeletePlaneActivity::class.java).apply {
             putExtra(DeletePlaneActivity.EXTRA_ICAO, plane.icao24)
         }

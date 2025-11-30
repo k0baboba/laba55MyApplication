@@ -27,8 +27,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddEditPlaneActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".DeletePlaneActivity" android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+        <activity android:name=".AddPlaneActivity" android:parentActivityName=".MainActivity" />
+        <activity android:name=".UpdatePlaneActivity" android:parentActivityName=".MainActivity" />
+        
+        <!-- Теперь это полноценное Activity, убираем прозрачную тему -->
+        <activity android:name=".DeletePlaneActivity" android:theme="@style/Theme.AppCompat.Light.Dialog" />
     </application>
 
 </manifest>
