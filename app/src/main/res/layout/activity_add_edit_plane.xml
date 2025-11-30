@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Basic Info"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edit_icao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ICAO24 (Unique ID)" />
+
+        <EditText
+            android:id="@+id/edit_callsign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Callsign (Name)" />
+
+        <EditText
+            android:id="@+id/edit_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flight Data"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edit_velocity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Velocity (m/s)"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/edit_altitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Altitude (m)"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/edit_longitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Longitude"
+            android:inputType="numberDecimal|numberSigned" />
+
+        <EditText
+            android:id="@+id/edit_latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Latitude"
+            android:inputType="numberDecimal|numberSigned" />
+
+        <EditText
+            android:id="@+id/edit_true_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="True Track (degrees)"
+            android:inputType="numberDecimal" />
+        
+        <CheckBox
+            android:id="@+id/checkbox_on_ground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is On Ground?" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save" />
+
+    </LinearLayout>
+</ScrollView>

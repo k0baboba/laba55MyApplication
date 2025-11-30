@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/planesFragment">
+
+    <fragment
+        android:id="@+id/planesFragment"
+        android:name="com.example.laba55myapplication.PlanesFragment"
+        android:label="Online Planes"
+        tools:layout="@layout/fragment_planes" >
+        <action
+            android:id="@+id/action_planesFragment_to_planeDetailFragment"
+            app:destination="@id/planeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/databaseFragment"
+        android:name="com.example.laba55myapplication.DatabaseFragment"
+        android:label="My Fleet"
+        tools:layout="@layout/fragment_database">
+        <!-- Добавляем действие для перехода к деталям из БД -->
+        <action
+            android:id="@+id/action_databaseFragment_to_planeDetailFragment"
+            app:destination="@id/planeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/planeDetailFragment"
+        android:name="com.example.laba55myapplication.PlaneDetailFragment"
+        android:label="Plane Details"
+        tools:layout="@layout/fragment_plane_detail" />
+
+</navigation>
