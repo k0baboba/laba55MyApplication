@@ -11,12 +11,12 @@
         android:layout_height="64dp"
         android:src="@android:drawable/ic_menu_delete"
         android:layout_marginBottom="16dp"
-        android:contentDescription="Delete Icon" />
+        android:contentDescription="@string/delete_icon_desc" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Plane?"
+        android:text="@string/delete_plane_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
@@ -34,7 +34,8 @@
         android:id="@+id/btn_confirm_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Delete"
+        android:text="@string/confirm_delete"
+        android:textSize="18sp"
         android:backgroundTint="#D32F2F"
         android:textColor="@android:color/white" />
 
@@ -42,8 +43,10 @@
         android:id="@+id/btn_cancel_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
+        android:textColor="@android:color/black"
         android:layout_marginTop="8dp"
+        android:textSize="18sp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
 </LinearLayout>

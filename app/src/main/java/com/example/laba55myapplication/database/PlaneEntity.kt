@@ -13,7 +13,6 @@ data class PlaneEntity(
     val originCountry: String,
     val velocity: Double? = 0.0,
     val baroAltitude: Double? = 0.0,
-    // Новые поля для полноценного просмотра деталей
     val longitude: Double? = 0.0,
     val latitude: Double? = 0.0,
     val trueTrack: Double? = 0.0,
@@ -21,7 +20,7 @@ data class PlaneEntity(
     val onGround: Boolean = false
 ) : Serializable {
 
-    // Метод для превращения Entity из базы данных в объект для экрана Деталей
+    // превращения Entity из базы данных в объект для экрана Деталей
     fun toStateVector(): StateVector {
         return StateVector(
             icao24 = this.icao24,

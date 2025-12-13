@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">laba55My Application</string>
+    <string name="delete_plane_title">Delete Plane?</string>
+    <string name="delete_plane_confirmation">Are you sure you want to permanently delete the record for plane with ICAO: %1$s?</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_icon_desc">Delete Icon</string>
 </resources>

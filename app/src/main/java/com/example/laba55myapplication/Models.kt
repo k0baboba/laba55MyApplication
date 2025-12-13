@@ -4,26 +4,25 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-// Ответ от API - states массив массивов
+
 data class OpenSkyResponse(
     @SerializedName("time")
     val time: Long,
 
     @SerializedName("states")
-    val states: List<List<Any?>>? // массив массивов
+    val states: List<List<Any?>>?
 )
 
-// хранение статистики
 data class PlanesStatistics(
     val total: Int,
     val inAir: Int,
     val onGround: Int
 )
 
-// модель самолёта после обработки
-@Parcelize // чтобы пересылать
+
+@Parcelize
 data class StateVector(
-    val icao24: String, // позывной самолёта
+    val icao24: String,
     val callsign: String?,
     val originCountry: String,
     val longitude: Double?,
@@ -33,7 +32,7 @@ data class StateVector(
     val trueTrack: Double?,
     val verticalRate: Double?,
     val onGround: Boolean
-) : Parcelable { // реализация Parcelable
+) : Parcelable { //
     companion object {
         fun fromArray(state: List<Any?>): StateVector? {
             return try {
@@ -50,12 +49,11 @@ data class StateVector(
                     onGround = (state[8] as? Boolean) ?: false
                 )
             } catch (e: Exception) {
-                null // игнор невалидные данные
+                null
             }
         }
     }
 
-    // вспомогательные методы для UI
     fun getSpeedKmh(): String {
         return velocity?.let {
             "%.0f км/ч".format(it * 3.6) // из м/с

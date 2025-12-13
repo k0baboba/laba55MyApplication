@@ -34,10 +34,8 @@ class DatabaseFragment : Fragment() {
         val planeDao = db.planeDao()
 
         adapter = DatabaseAdapter(
-            // Короткое нажатие: Открываем детали
             onItemClick = { plane -> showDetails(plane) },
-            
-            // Долгое нажатие: Открываем меню действий
+
             onItemLongClick = { plane -> showActionDialog(plane) }
         )
 
@@ -49,7 +47,7 @@ class DatabaseFragment : Fragment() {
         }
 
         binding.fabAddPlane.setOnClickListener {
-            // Используем специализированное Activity для добавления
+            // Activity для добавления
             val intent = Intent(requireContext(), AddPlaneActivity::class.java)
             startActivity(intent)
         }
@@ -63,8 +61,8 @@ class DatabaseFragment : Fragment() {
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> showDetails(plane)
-                    1 -> updatePlane(plane) // Сразу переходим к обновлению, без лишних вопросов
-                    2 -> deletePlane(plane) // Сразу переходим к экрану удаления
+                    1 -> updatePlane(plane)
+                    2 -> deletePlane(plane)
                 }
             }
             .show()
@@ -75,12 +73,10 @@ class DatabaseFragment : Fragment() {
         val bundle = Bundle().apply {
             putParcelable("plane", stateVector)
         }
-        // Используем навигацию для показа фрагмента деталей
         findNavController().navigate(R.id.planeDetailFragment, bundle)
     }
 
     private fun updatePlane(plane: PlaneEntity) {
-        // Используем специализированное Activity для обновления
         val intent = Intent(requireContext(), UpdatePlaneActivity::class.java).apply {
             putExtra(UpdatePlaneActivity.EXTRA_ICAO, plane.icao24)
             putExtra(UpdatePlaneActivity.EXTRA_CALLSIGN, plane.callsign)
@@ -97,7 +93,6 @@ class DatabaseFragment : Fragment() {
     }
 
     private fun deletePlane(plane: PlaneEntity) {
-        // Используем специализированное Activity для удаления
         val intent = Intent(requireContext(), DeletePlaneActivity::class.java).apply {
             putExtra(DeletePlaneActivity.EXTRA_ICAO, plane.icao24)
         }

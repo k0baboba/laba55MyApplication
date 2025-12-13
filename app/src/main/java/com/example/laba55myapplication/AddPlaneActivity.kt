@@ -58,8 +58,6 @@ class AddPlaneActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            // Проверяем, нет ли уже такого самолета (хотя Room replace может сделать это автоматом,
-            // но для чистоты эксперимента добавим новый)
             db.planeDao().insertPlane(plane)
             finish()
         }

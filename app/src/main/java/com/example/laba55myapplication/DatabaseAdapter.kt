@@ -41,7 +41,6 @@ class DatabaseAdapter(
         }
 
         fun bind(plane: PlaneEntity) {
-            // Updated IDs to match item_plane.xml
             binding.callsign.text = plane.callsign ?: plane.icao24
             binding.originCountry.text = plane.originCountry
             binding.speed.text = "%.0f km/h".format((plane.velocity ?: 0.0) * 3.6)

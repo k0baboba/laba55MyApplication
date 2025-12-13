@@ -21,7 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "planes_database"
                 )
-                .fallbackToDestructiveMigration() // Разрешаем удалять старую БД при изменении структуры
+                .fallbackToDestructiveMigration()
                 .build()
                 INSTANCE = instance
                 instance
